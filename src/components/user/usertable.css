@@ -39,6 +39,14 @@ table {
   border-collapse: collapse;
 }
 
+
+tfoot {
+  position: sticky;
+  bottom: 0;
+  background: white; /* Ensure visibility */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow effect */
+}
+
 table th,
 table td {
   padding: 12px;
