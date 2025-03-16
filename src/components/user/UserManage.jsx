@@ -6,7 +6,7 @@ import Modal from '../modal/Modal'
 import { toast } from 'react-toastify';
 import { data, useSearchParams } from 'react-router-dom'
 import { useState } from 'react'
-import { useDeleteUserMutation, useGetUsersInfiniteQuery,  useUpdateUserMutation } from '../../store/api/user.api'
+import { useDeleteUserMutation, useGetUsersInfiniteQuery, useUpdateUserMutation } from '../../store/api/user.api'
 
 export default function UserManageTable() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -23,7 +23,6 @@ export default function UserManageTable() {
     const [updateUser, updateUserFlags] = useUpdateUserMutation()
     const [deleteUser, deleteUserFlags] = useDeleteUserMutation()
 
-    //pagination
     const currentPage = data?.pageParams?.[0]
     const slicedUsers = data?.pages?.[0];
 
@@ -51,18 +50,17 @@ export default function UserManageTable() {
 
     const deleteUserById = async (id) => {
         try {
-            await deleteUser(id).unwrap(); 
-    
-            toast.success('User deleted successfully!'); 
-    
-            refetch(); 
+            await deleteUser(id).unwrap();
+
+            toast.success('User deleted successfully!');
+
+            refetch();
         } catch (error) {
             toast.error('Failed to delete User!');
         }
     }
 
 
-    //filter user
     const handleFilterChange = (key, value) => {
         const newParams = new URLSearchParams(searchParams);
         if (value) {
@@ -179,17 +177,14 @@ export default function UserManageTable() {
                                 <p>Email</p>
                                 <input type="email" value={editUser.email} onChange={(e) => updateEditUser('email', e.target.value)} className="my-2 w-full rounded-lg bg-input-border p-4 outline-none" placeholder='email' />
                             </div>
-                            {/* <div className="mt-2">
-                                <p>Status</p>
-                                <input type="text" value={editUser.status} onChange={(e) => updateEditUser('status', e.target.value)} className="my-2 w-full rounded-lg bg-input-border p-4 outline-none" placeholder='status' />
-                            </div> */}
+                          
                             <div className='mt-2'>
-                            <p>Status</p>
-                            <select value={editUser.status}
-                            onChange={(e) => updateEditUser("status", e.target.value)} className="my-2 w-full rounded-lg bg-input-border p-4 outline-none" placeholder='status'>
-                            <option value="active">active</option>
-                             <option value="inactive">inactive</option>
-                           </select>
+                                <p>Status</p>
+                                <select value={editUser.status}
+                                    onChange={(e) => updateEditUser("status", e.target.value)} className="my-2 w-full rounded-lg bg-input-border p-4 outline-none" placeholder='status'>
+                                    <option value="active">active</option>
+                                    <option value="inactive">inactive</option>
+                                </select>
                             </div>
                             <button className="block mx-auto w-full bg-custom-red text-white rounded-md h-10 mt-3" onClick={saveUser}>{updateUserFlags.isLoading ? '...' : 'Save'}
                             </button>

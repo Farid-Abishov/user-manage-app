@@ -3,6 +3,7 @@ import Modal from '../../components/modal/Modal';
 import CancelIcon from '../../assets/icons/cancel.png'
 import { useState } from 'react';
 import CreateUserModal from '../../pages/users/CreateUserModal';
+import CreatePostModal from '../../pages/userposts/CreatePostModal';
 
 export default function Header({addBtnText,userName}){
 
@@ -24,30 +25,6 @@ export default function Header({addBtnText,userName}){
        </button>
         </div>
     </div>
-     {addBtnText==="New User" ? <CreateUserModal isOpen={isModalOpen} closeModal={closeModal}/>:  <Modal isOpen={isModalOpen}>
-                <div className="flex justify-between">
-                    <span className="font-poppin font-medium text-lg ">Add Post</span>
-                    <img src={CancelIcon} onClick={closeModal} className='hover:cursor-pointer' alt="" />
-                </div>
-                <div className="flex flex-col justify-center items-center">
-                    <div className="w-full">
-                        
-                        <div className="mt-2">
-                            <p>User id</p>
-                           <input type="number"  className="my-2 w-full rounded-lg bg-input-border p-4 outline-none" placeholder='user id' />
-                        </div>
-                        <div className="mt-2">
-                            <p>Title</p>
-                            <input type="text" className="my-2 w-full rounded-lg bg-input-border p-4 outline-none"  placeholder='title'/>
-                        </div>
-                       
-                        <div className="mt-2">
-                            <p>body</p>
-                            <input type="text" className="my-2 w-full rounded-lg bg-input-border p-4 outline-none"  placeholder='body'/>
-                        </div>
-                        <button className="block mx-auto w-full bg-custom-red text-white rounded-md h-10 mt-8">Save</button>
-                    </div>
-                </div>
-     </Modal> }
+     {addBtnText==="New User" ? <CreateUserModal isOpen={isModalOpen} closeModal={closeModal}/>:  <CreatePostModal isOpen={isModalOpen} closeModal={closeModal} /> }
  </header>
 }

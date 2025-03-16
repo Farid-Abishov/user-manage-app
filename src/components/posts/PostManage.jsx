@@ -52,11 +52,11 @@ export default function PostManageTable() {
 }
 
 
-     //pagination
+     
      const currentPage = data?.pageParams?.[0]
      const slicedPosts = data?.pages?.[0];
      
-     //filter posts
+    
      const handleFilterChange = (key, value) => {
         const newParams = new URLSearchParams(searchParams);
         if (value) {
@@ -69,7 +69,7 @@ export default function PostManageTable() {
 
      
     return (
-        <div >
+        <div className='shadow-2xs' >
             <div>
                 <p className="p-3 font-semibold">Posts</p>
                 <hr />

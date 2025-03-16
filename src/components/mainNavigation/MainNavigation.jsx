@@ -9,7 +9,7 @@ export default function MainNavigation() {
 
   return (
     <aside className="min-h-screen float-start w-aside-w p-2 border-2 border-r-gray-200 max-[765px]:hidden">
-      <div className="flex flex-row justify-center align-center items-center my-4">
+      <div className="flex flex-row  align-center items-center my-4 p-3">
         <h1 className="text-xl m-0 font-semibold font-title text-header-black mr-2">
           User Manage App
         </h1>
