@@ -1,17 +1,15 @@
 import plusImg from '../../assets/icons/plus.svg'
-import Modal from '../../components/modal/Modal';
-import CancelIcon from '../../assets/icons/cancel.png'
 import { useState } from 'react';
 import CreateUserModal from '../../pages/users/CreateUserModal';
-import CreatePostModal from '../../pages/userposts/CreatePostModal';
+import CreatePostModal from '../posts/CreatePostModal';
 
-export default function Header({addBtnText,userName}){
+export default function Header({addBtnText}){
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const openModal = () => {
         setIsModalOpen(true);
     };
-
+   
     const closeModal = () => {
         setIsModalOpen(false);
     };

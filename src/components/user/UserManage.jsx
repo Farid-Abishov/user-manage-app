@@ -4,7 +4,7 @@ import Edit from '../../assets/icons/Edit.svg'
 import CancelIcon from '../../assets/icons/cancel.png'
 import Modal from '../modal/Modal'
 import { toast } from 'react-toastify';
-import { data, useSearchParams } from 'react-router-dom'
+import { data, Link, useSearchParams } from 'react-router-dom'
 import { useState } from 'react'
 import { useDeleteUserMutation, useGetUsersInfiniteQuery, useUpdateUserMutation } from '../../store/api/user.api'
 
@@ -79,7 +79,7 @@ export default function UserManageTable() {
 
     return (
         <>
-            <div>
+            <div className='table-header'> 
                 <p className="p-3 font-semibold">Users</p>
                 <hr />
                 <div className="controls p-3 ">
@@ -95,7 +95,7 @@ export default function UserManageTable() {
                             onChange={(e) => handleFilterChange("email", e.target.value)} placeholder='Email' className='search-input' />
                         <select value={gender}
                             onChange={(e) => handleFilterChange("gender", e.target.value)} className="border-2 rounded-lg text-gray-400 select outline-none">
-                            <option value="" disabled  >Gender</option>
+                            <option value="" >{gender ? 'Clear' : 'Gender'}</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                         </select>
@@ -131,7 +131,7 @@ export default function UserManageTable() {
                             {slicedUsers.map((item) => (
                                 <tr key={item.id}>
                                     <td>{item.id}</td>
-                                    <td>{item.name}</td>
+                                    <td><Link to={`/users/${item.id}`}>{item.name}</Link></td>
                                     <td>{item.email}</td>
                                     <td>{item.gender}</td>
                                     <td>{item.status}</td>

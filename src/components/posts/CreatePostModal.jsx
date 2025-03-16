@@ -1,9 +1,11 @@
-import Modal from "../../components/modal/Modal";
+import Modal from "../modal/Modal";
 import CancelIcon from '../../assets/icons/cancel.png';
-import { useCreatePostMutation, postApi } from "../../store/api/post.api";
+import { useCreatePostMutation } from "../../store/api/post.api";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from 'react-toastify';
+import { useParams } from "react-router-dom";
+import { userApi } from "../../store/api/user.api";
 
 const createPostInitialState = {
     user_id: "",
@@ -12,8 +14,9 @@ const createPostInitialState = {
 };
 
 export default function CreatePostModal({ isOpen, closeModal }) {
+    const params=useParams();
     const dispatch = useDispatch();
-    const [post, setPost] = useState(createPostInitialState);
+    const [post, setPost] = useState({...createPostInitialState,user_id:params.id});
     const [createPost, createPostFlags] = useCreatePostMutation();
 
     const updatePost = (key, value) => {
@@ -24,12 +27,11 @@ export default function CreatePostModal({ isOpen, closeModal }) {
 
         try {
             await createPost(post).unwrap();
-            closeModal();
-            setPost({})
-            dispatch(postApi.util.invalidateTags(['getPosts']));
+            setPost({...createPostInitialState,user_id:params.id})
+            dispatch(userApi.util.invalidateTags(['getUserPosts']));
             toast.success('Post created successfully!');
+            closeModal();
         } catch (err) {
-            // console.error("Error:", err);
              toast.error(`${err.data[0].field} ${err.data[0].message}`);
         }
     };
@@ -44,17 +46,7 @@ export default function CreatePostModal({ isOpen, closeModal }) {
             </div>
             <div className="flex flex-col justify-center items-center">
                 <div className="w-full">
-                    <div className="mt-2">
-                        <p>User id</p>
-                        <input
-                            type="number"
-                            value={post.user_id}
-                            onChange={(e) => updatePost("user_id", parseInt(e.target.value) || "")}
-                            className="my-2 w-full rounded-lg bg-input-border p-4 outline-none"
-                            placeholder="User ID"
-                        />
-
-                    </div>
+                   
                     <div className="mt-2">
                         <p>Title</p>
                         <input

@@ -6,15 +6,16 @@ import { toast } from 'react-toastify';
 import { useSearchParams } from 'react-router-dom'
 import { useState } from 'react'
 import { useGetPostsInfiniteQuery,useUpdatePostMutation ,useDeletePostMutation } from "../../store/api/post.api";
+import { useGetUserPostsInfiniteQuery } from '../../store/api/user.api';
 
-export default function PostManageTable() {
+export default function PostManageTable({userId}) {
     const [searchParams, setSearchParams] = useSearchParams();
     const [editPost, setEditPost] = useState(null);
 
     const title = searchParams.get("title") || "";
     const body = searchParams.get("body") || "";
  
-    const { data, isFetching, fetchNextPage, fetchPreviousPage, refetch, error, } = useGetPostsInfiniteQuery({ title,body })
+    const { data, isFetching, fetchNextPage, fetchPreviousPage, refetch, error, } = useGetUserPostsInfiniteQuery({ title,body,userId })
      const [updatePost, updatePostFlags] = useUpdatePostMutation();
       const [deletePost, deletePostFlags] = useDeletePostMutation();
 
@@ -69,8 +70,8 @@ export default function PostManageTable() {
 
      
     return (
-        <div className='shadow-2xs' >
-            <div>
+        <div  >
+            <div className='table-header'>
                 <p className="p-3 font-semibold">Posts</p>
                 <hr />
                 <div className="controls p-3 " >
@@ -79,6 +80,7 @@ export default function PostManageTable() {
                         <input type="text"  value={body} onChange={(e) => handleFilterChange("body", e.target.value)}  placeholder='Body' className='search-input' />
                     </div>
                 </div>
+               
             </div>
             {isFetching ? (
                 <p className="text-center text-gray-500">loading...</p>
@@ -90,7 +92,6 @@ export default function PostManageTable() {
                         <thead className="bg-gray-100 " >
                             <tr>
                                 <th>Id</th>
-                                <th>User Id</th>
                                 <th>Title</th>
                                 <th>Body</th>
                                 <th>Edit</th>
@@ -100,7 +101,6 @@ export default function PostManageTable() {
                             {slicedPosts.map((item) => (
                                 <tr key={item.id}>
                                     <td>{item.id}</td>
-                                    <td>{item.user_id}</td>
                                     <td>{item.title}</td>
                                     <td>{item.body}</td>
                                     <td className="flex gap-2">

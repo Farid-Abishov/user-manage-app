@@ -25,6 +25,32 @@ export const userApi = createApi({
           return `/users?page=${pageParam}&per_page=10${queryArg ? `&${new URLSearchParams(queryArg).toString()}` : ''}`    
         },
       }),
+    getUser:builder.query({
+      query:(id)=>({
+        url:`users/${id}`
+      })
+    }),
+    getUserPosts: builder.infiniteQuery({
+      infiniteQueryOptions: {
+        initialPageParam: 1,
+        maxPages: 1,
+        getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) =>
+          lastPageParam + 1,
+        getPreviousPageParam: (
+          firstPage,
+          allPages,
+          firstPageParam,
+          allPageParams
+        ) => {
+          return firstPageParam > 0 ? firstPageParam - 1 : undefined;
+        },
+      },
+      providesTags: ["getUserPosts"],
+      query: ({ queryArg, pageParam }) =>
+        `users/${queryArg.userId}/posts?page=${pageParam}&per_page=10${
+          queryArg ? `&${new URLSearchParams(queryArg).toString()}` : ""
+        }`,
+    }),
     updateUser: builder.mutation({
         query: ({ id, ...params }) => ({
           url: `users/${id}`,
@@ -48,4 +74,4 @@ export const userApi = createApi({
   }),
 })
 
-export const { useGetUsersInfiniteQuery, useUpdateUserMutation, useCreateUserMutation,useDeleteUserMutation } = userApi
+export const { useGetUsersInfiniteQuery, useUpdateUserMutation, useCreateUserMutation,useDeleteUserMutation ,useGetUserQuery,useGetUserPostsInfiniteQuery} = userApi

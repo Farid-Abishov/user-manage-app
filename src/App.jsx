@@ -2,27 +2,8 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import RootLayout from "./pages/root/root";
 import UserPage from "./pages/users/User";
-import UserPostPage from "./pages/userposts/UserPostPage";
+import UserDetail from "./pages/users/UserDetail";
 
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <LoginPage />, // Əsas səhifə açıldıqda LoginPage görünsün
-//   },
-//   {
-//     path: "",
-//     element: <RootLayout />,
-//     children: [
-//       { path: "questions", element: <QuestionPage /> },
-//       { path: "questionscategory", element: <QuestionCategoryPage /> },
-//       { path: "users", element: <UserPage /> },
-//       { path: "userscategory", element: <UserCategoryPage /> },
-//       { path: "quiz", element: <QuizPage /> },
-//       { path: "tag", element: <TagPage /> },
-//     ],
-//   },
-//   { path: "/frquestions", element: <FrQuestionsPage /> },
-// ]);
 function App() {
   return (
       <Router>
@@ -36,11 +17,7 @@ function App() {
                   <UserPage />
               }
             ></Route>
-
-            <Route path="/posts"
-              element={
-                  <UserPostPage />
-              }></Route>
+            <Route path="/users/:id" element={<UserDetail/>}></Route>
 
           </Route>
         </Routes>
