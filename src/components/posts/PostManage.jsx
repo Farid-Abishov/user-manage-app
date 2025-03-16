@@ -5,13 +5,13 @@ import Modal from '../modal/Modal'
 import { toast } from 'react-toastify';
 import { useSearchParams } from 'react-router-dom'
 import { useState } from 'react'
-import { useGetPostsInfiniteQuery,useUpdatePostMutation ,useDeletePostMutation } from "../../store/api/post.api";
+import { useUpdatePostMutation ,useDeletePostMutation } from "../../store/api/post.api";
 import { useGetUserPostsInfiniteQuery } from '../../store/api/user.api';
 
 export default function PostManageTable({userId}) {
     const [searchParams, setSearchParams] = useSearchParams();
     const [editPost, setEditPost] = useState(null);
-
+      
     const title = searchParams.get("title") || "";
     const body = searchParams.get("body") || "";
  

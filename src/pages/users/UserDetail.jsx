@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../../components/header/header'
-import PostManageTable from '../../components/posts/postManage'
+import PostManageTable from '../../components/posts/PostManage'
 import { ToastContainer } from 'react-toastify'
 import { useParams } from "react-router-dom"
 import { useGetUserQuery } from "../../store/api/user.api"
