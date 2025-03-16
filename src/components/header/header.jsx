@@ -33,10 +33,6 @@ export default function Header({addBtnText,userName}){
                     <div className="w-full">
                         
                         <div className="mt-2">
-                            <p>Id</p>
-                           <input type="number" className="my-2 w-full rounded-lg bg-input-border p-4 outline-none" placeholder='id' />
-                        </div>
-                        <div className="mt-2">
                             <p>User id</p>
                            <input type="number"  className="my-2 w-full rounded-lg bg-input-border p-4 outline-none" placeholder='user id' />
                         </div>
@@ -49,7 +45,7 @@ export default function Header({addBtnText,userName}){
                             <p>body</p>
                             <input type="text" className="my-2 w-full rounded-lg bg-input-border p-4 outline-none"  placeholder='body'/>
                         </div>
-                        <button className="block mx-auto w-full bg-custom-red text-white rounded-md h-10 mt-3">Save</button>
+                        <button className="block mx-auto w-full bg-custom-red text-white rounded-md h-10 mt-8">Save</button>
                     </div>
                 </div>
      </Modal> }

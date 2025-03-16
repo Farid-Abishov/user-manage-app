@@ -15,7 +15,7 @@ export default {
         'custom-red':'#FF003C',
         'custom-black':'#1F1F1F',
         'input-border':'#E6E9ED',
-        'body-bg':'#f5faff',
+        'body-bg':'#e5f2fb',
         'header-black':'#323232'
       },
       width:{
@@ -26,10 +26,8 @@ export default {
         'content-w':'660px',
         'profile-w':'220px',
         'aside-w':'335px',
-        'profile_input_btn':'315px',
         'addbtn':'179px',
         'qstnmngInput':'460px',
-        'img':'275px'
       },
      
       height:{

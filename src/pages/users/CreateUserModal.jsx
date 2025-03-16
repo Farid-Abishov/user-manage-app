@@ -50,11 +50,17 @@ export default function CreateUserModal({ isOpen, closeModal }) {
                 </div>
                 <div className="mt-2">
                     <p>Gender</p>
-                    <input type="text" value={user.gender} onChange={(e) => updateUser('gender', e.target.value)} className="my-2 w-full rounded-lg bg-input-border p-4 outline-none" placeholder='gender' />
+                    <select value={user.gender} onChange={(e) => updateUser('gender', e.target.value)} className="my-2 w-full rounded-lg bg-input-border p-4 outline-none" >
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
                 </div>
                 <div className="mt-2">
                     <p>Status</p>
-                    <input type="text" value={user.status} onChange={(e) => updateUser('status', e.target.value)} className="my-2 w-full rounded-lg bg-input-border p-4 outline-none" placeholder='status' />
+                    <select value={user.status} onChange={(e) => updateUser('status', e.target.value)} className="my-2 w-full rounded-lg bg-input-border p-4 outline-none" >
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
                 </div>
                 <button onClick={saveUser} className="block mx-auto w-full bg-custom-red text-white rounded-md h-10 mt-3">{createUserFlags.isLoading ? `...` : 'Save'}</button>
             </div>

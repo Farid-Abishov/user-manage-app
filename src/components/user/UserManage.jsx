@@ -3,10 +3,10 @@ import Bin from '../../assets/icons/Bin.svg'
 import Edit from '../../assets/icons/Edit.svg'
 import CancelIcon from '../../assets/icons/cancel.png'
 import Modal from '../modal/Modal'
-import { getUserList } from '../../Api/user/index'
+import { toast } from 'react-toastify';
 import { data, useSearchParams } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-import { useDeleteUserMutation, useGetUsersInfiniteQuery, userApi, useUpdateUserMutation } from '../../store/api/user.api'
+import { useState } from 'react'
+import { useDeleteUserMutation, useGetUsersInfiniteQuery,  useUpdateUserMutation } from '../../store/api/user.api'
 
 export default function UserManageTable() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -21,7 +21,8 @@ export default function UserManageTable() {
     const { data, isFetching, fetchNextPage, fetchPreviousPage, refetch, error, } = useGetUsersInfiniteQuery({ name, email, gender, status })
 
     const [updateUser, updateUserFlags] = useUpdateUserMutation()
-    const [deleteUser,deleteUserFlags] =useDeleteUserMutation()
+    const [deleteUser, deleteUserFlags] = useDeleteUserMutation()
+
     //pagination
     const currentPage = data?.pageParams?.[0]
     const slicedUsers = data?.pages?.[0];
@@ -40,21 +41,24 @@ export default function UserManageTable() {
     }
 
     const saveUser = async () => {
-        
-         await updateUser(editUser).unwrap()
 
-         // add toast
+        await updateUser(editUser).unwrap()
+
         refetch()
 
         closeEditUser()
     }
 
-    const deleteUserById= async (id)=>{
-       await deleteUser(id).unwrap();
-
-       // add toast
-
-       refetch()
+    const deleteUserById = async (id) => {
+        try {
+            await deleteUser(id).unwrap(); 
+    
+            toast.success('User deleted successfully!'); 
+    
+            refetch(); 
+        } catch (error) {
+            toast.error('Failed to delete User!');
+        }
     }
 
 
@@ -91,7 +95,7 @@ export default function UserManageTable() {
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                         </select>
-                        <select value={status} 
+                        <select value={status}
                             onChange={(e) => handleFilterChange("status", e.target.value)} className="border-2 rounded-lg text-gray-400 select outline-none">
                             <option value="" disabled >Status</option>
                             <option value="active">active</option>
@@ -111,12 +115,12 @@ export default function UserManageTable() {
                     <table className="faq-table">
                         <thead className="bg-gray-100">
                             <tr>
-                                <th>id</th>
-                                <th>name</th>
-                                <th>email</th>
-                                <th>gender</th>
-                                <th>status</th>
-                                <th>edit</th>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Gender</th>
+                                <th>Status</th>
+                                <th>Edit</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -137,12 +141,13 @@ export default function UserManageTable() {
 
                         <tfoot>
                             <tr>
-                                <td>Pagination</td>
-                                <td colSpan="5"> <div className='pagination  flex gap-4 justify-end items-center'>
-                                    <button onClick={() => fetchPreviousPage()} disabled={currentPage === 1} className="py-1 px-2  bg-custom-red text-white rounded-md mt-3 transition-all .2s ease-in-out  hover:bg-red-500">Previous</button>
-                                    <span className='font-poppin'>{currentPage}</span>
-                                    <button onClick={() => fetchNextPage()} disabled={slicedUsers.length === 0} className="py-1 px-2     bg-custom-red text-white rounded-md mt-3 transition-all .2s ease-in-out  hover:bg-red-500">Next</button>
-                                </div>
+                                <td className='font-semibold'>Pagination</td>
+                                <td colSpan="5">
+                                    <div className='pagination  flex gap-4 justify-end items-center'>
+                                        <button onClick={() => fetchPreviousPage()} disabled={currentPage === 1} className="py-1 px-2  bg-custom-red text-white rounded-md  transition-all .2s ease-in-out  hover:bg-red-500">Previous</button>
+                                        <span className='font-poppin bg-slate-300 w-9 h-9 flex justify-center items-center rounded-3xl text-center'>{currentPage}</span>
+                                        <button onClick={() => fetchNextPage()} disabled={slicedUsers.length === 0} className="py-1 px-2     bg-custom-red text-white rounded-md  transition-all .2s ease-in-out  hover:bg-red-500">Next</button>
+                                    </div>
                                 </td>
                             </tr>
                         </tfoot>
@@ -174,11 +179,20 @@ export default function UserManageTable() {
                                 <p>Email</p>
                                 <input type="email" value={editUser.email} onChange={(e) => updateEditUser('email', e.target.value)} className="my-2 w-full rounded-lg bg-input-border p-4 outline-none" placeholder='email' />
                             </div>
-                            <div className="mt-2">
+                            {/* <div className="mt-2">
                                 <p>Status</p>
                                 <input type="text" value={editUser.status} onChange={(e) => updateEditUser('status', e.target.value)} className="my-2 w-full rounded-lg bg-input-border p-4 outline-none" placeholder='status' />
+                            </div> */}
+                            <div className='mt-2'>
+                            <p>Status</p>
+                            <select value={editUser.status}
+                            onChange={(e) => updateEditUser("status", e.target.value)} className="my-2 w-full rounded-lg bg-input-border p-4 outline-none" placeholder='status'>
+                            <option value="active">active</option>
+                             <option value="inactive">inactive</option>
+                           </select>
                             </div>
-                            <button className="block mx-auto w-full bg-custom-red text-white rounded-md h-10 mt-3" onClick={saveUser}>{updateUserFlags.isLoading ? '...' : 'Save'}</button>
+                            <button className="block mx-auto w-full bg-custom-red text-white rounded-md h-10 mt-3" onClick={saveUser}>{updateUserFlags.isLoading ? '...' : 'Save'}
+                            </button>
                         </div>
                     </div>
                 </>)}
