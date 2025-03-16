@@ -9,7 +9,7 @@ export default function UserPostPage() {
                <div className="p-5 "> 
                <div className='text-justify bg-white overflow-y-scroll  rounded-2xl h-container-h shadow-custom-shadow'>
                  <PostManageTable/> 
-                 <ToastContainer position="top-right" autoClose={1000} />
+                 <ToastContainer position="bottom-right" autoClose={1500} />
                </div>
             </div>
         </div>

@@ -3,7 +3,7 @@ import CancelIcon from '../../assets/icons/cancel.png'
 import { useCreateUserMutation, userApi } from "../../store/api/user.api";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-
+import { toast } from 'react-toastify';
 const createUserInitialState = {
     name: "",
     email: "",
@@ -19,17 +19,19 @@ export default function CreateUserModal({ isOpen, closeModal }) {
 
 
     const updateUser = (key, value) => {
-        setUser((prev) => ({ ...prev, [key]: value }))
+        setUser((prev) => ({ ...prev, [key]: value || '' }));
+        
     }
 
     const saveUser = async () => {
         try {
             await createUser(user).unwrap();
-            closeModal()
-
-           dispatch(userApi.util.invalidateTags(['getUsers']))
+            closeModal();
+            setUser({});
+            dispatch(userApi.util.invalidateTags(['getUsers']))
+            toast.success('User created successfully!');
         } catch (err) {
-            alert(`${err.data[0].field} ${err.data[0].message}`)
+            toast.error(`${err.data[0].field} ${err.data[0].message}`);
         }
     }
 
@@ -51,6 +53,7 @@ export default function CreateUserModal({ isOpen, closeModal }) {
                 <div className="mt-2">
                     <p>Gender</p>
                     <select value={user.gender} onChange={(e) => updateUser('gender', e.target.value)} className="my-2 w-full rounded-lg bg-input-border p-4 outline-none" >
+                        <option value="" disabled={true}>Gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
@@ -58,6 +61,7 @@ export default function CreateUserModal({ isOpen, closeModal }) {
                 <div className="mt-2">
                     <p>Status</p>
                     <select value={user.status} onChange={(e) => updateUser('status', e.target.value)} className="my-2 w-full rounded-lg bg-input-border p-4 outline-none" >
+                    <option value="" disabled={true}>Status</option>
                         <option value="Active">Active</option>
                         <option value="Inactive">Inactive</option>
                     </select>

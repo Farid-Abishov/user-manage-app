@@ -3,6 +3,7 @@ import CancelIcon from '../../assets/icons/cancel.png';
 import { useCreatePostMutation, postApi } from "../../store/api/post.api";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { toast } from 'react-toastify';
 
 const createPostInitialState = {
     user_id: "",
@@ -20,18 +21,16 @@ export default function CreatePostModal({ isOpen, closeModal }) {
     };
 
     const savePost = async () => {
-        if (!post.user_id || !post.title || !post.body) {
-            alert("fill all field!");
-            return;
-        }
 
         try {
             await createPost(post).unwrap();
             closeModal();
+            setPost({})
             dispatch(postApi.util.invalidateTags(['getPosts']));
+            toast.success('Post created successfully!');
         } catch (err) {
-            console.error("Error:", err);
-            alert(err?.data?.[0]?.field ? `${err.data[0].field} ${err.data[0].message}` : "An error occurred while saving the post.");
+            // console.error("Error:", err);
+             toast.error(`${err.data[0].field} ${err.data[0].message}`);
         }
     };
 

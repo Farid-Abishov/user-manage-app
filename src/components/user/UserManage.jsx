@@ -44,9 +44,15 @@ export default function UserManageTable() {
         await updateUser(editUser).unwrap()
 
         refetch()
-
+        
         closeEditUser()
+        try{
+
+        }catch(err){
+
+        }
     }
+
 
     const deleteUserById = async (id) => {
         try {
