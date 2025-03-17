@@ -189,18 +189,18 @@ export default function UserManageTable() {
                             <div className='mt-2'>
                                 <p>Gender</p>
                                 <select value={editUser.gender}
-                                    onChange={(e) => updateEditUser("gender", e.target.value)} className="my-2 w-full rounded-lg bg-input-border p-4 outline-none" placeholder='status'>
-                                    <option value="active">Male</option>
-                                    <option value="inactive">Female</option>
+                                    onChange={(e) => updateEditUser("gender", e.target.value)} className="my-2 w-full rounded-lg bg-input-border p-4 outline-none" >
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
                                 </select>
                             </div>
 
                             <div className='mt-2'>
                                 <p>Status</p>
                                 <select value={editUser.status}
-                                    onChange={(e) => updateEditUser("status", e.target.value)} className="my-2 w-full rounded-lg bg-input-border p-4 outline-none" placeholder='status'>
-                                    <option value="active">active</option>
-                                    <option value="inactive">inactive</option>
+                                    onChange={(e) => updateEditUser("status", e.target.value)} className="my-2 w-full rounded-lg bg-input-border p-4 outline-none" >
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
                                 </select>
                             </div>
                             <button className="block mx-auto w-full bg-custom-red text-white rounded-md h-10 mt-3" onClick={saveUser}>{updateUserFlags.isLoading ? '...' : 'Save'}

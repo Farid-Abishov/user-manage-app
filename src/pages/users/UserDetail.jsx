@@ -12,7 +12,9 @@ export default function UserDetail() {
     const { data: user, ...getUserFlags } = useGetUserQuery(params.id);
 
     return <div>
-        {getUserFlags.isLoading ? <div className='absolute'>loading</div> :
+        {getUserFlags.isLoading ? <div className='flex items-center justify-center h-screen'>
+            <div className='w-16 h-16 border-4 border-red-500 border-dotted rounded-full animate-spin'></div>
+        </div> :
             <div className="flex flex-col flex-1 bg-body-bg h-screen">
                 <Header addBtnText='New Post' />
                 <div className="w-96 mt-3 ml-5 p-2 rounded-md flex flex-col bg-white  max-w-md shadow-sm hover:shadow-md transition-shadow">
