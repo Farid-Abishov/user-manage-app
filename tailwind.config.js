@@ -24,13 +24,12 @@ export default {
         'aside-w':'300px',
         'addbtn':'179px',
       },
-     
       height:{
         'input-h':'42px',
         'header-h':'100px',
         'item-h':'650px',
         'content-h':'140px',
-        'container-h':'615px'
+        'container-h':'580px'
         },
       boxShadow:{
         'custom-shadow':'0 0 8px 0  rgba(230, 233, 237, 1)'

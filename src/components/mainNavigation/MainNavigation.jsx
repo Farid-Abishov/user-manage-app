@@ -7,7 +7,7 @@ export default function MainNavigation() {
   const [active, setActive] = useState(location.pathname); // Aktiv olan path-i saxlayırıq
 
   return (
-    <aside className="min-h-screen float-start w-aside-w p-2 border-2 border-r-gray-200 max-[765px]:hidden">
+    <aside className="min-h-screen float-start w-aside-w p-2 border-r-2 max-[765px]:hidden">
       <div className="flex flex-row  align-center items-center my-4 p-3">
         <h1 className="text-xl m-0 font-semibold font-title text-header-black mr-2">
           User Manage App

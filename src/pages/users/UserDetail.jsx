@@ -37,7 +37,7 @@ export default function UserDetail() {
                 </div>
 
                 <div className="p-5 ">
-                    <div className='text-justify bg-white overflow-y-scroll  rounded-2xl max-h-container-h shadow-custom-shadow'>
+                    <div className='text-justify bg-white overflow-y-scroll  rounded-2xl max-h-[490px] shadow-custom-shadow'>
                         <PostManageTable userId={params.id} />
                         <ToastContainer position="bottom-right" autoClose={1500} />
                     </div>

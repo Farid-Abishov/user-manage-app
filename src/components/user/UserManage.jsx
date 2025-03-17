@@ -82,7 +82,7 @@ export default function UserManageTable() {
             <div className='table-header'>
                 <p className="p-3 font-semibold">Users</p>
                 <hr />
-                <div className="controls p-3 ">
+                <div className="controls p-1 ">
                     <div className="search-filter w-full flex flex-row gap-2">
                         <input
                             type="search"
@@ -132,7 +132,7 @@ export default function UserManageTable() {
                                 <tr key={item.id}>
                                     <td>{item.id}</td>
                                     <td>
-                                        <Link className='text-blue-600' to={`/users/${item.id}`}>{item.name}</Link>
+                                        <Link className='text-blue-700' to={`/users/${item.id}`}>{item.name}</Link>
                                     </td>
                                     <td>{item.email}</td>
                                     <td>{item.gender}</td>
