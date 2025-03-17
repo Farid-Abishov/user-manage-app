@@ -14,9 +14,9 @@ const createPostInitialState = {
 };
 
 export default function CreatePostModal({ isOpen, closeModal }) {
-    const params=useParams();
+    const params = useParams();
     const dispatch = useDispatch();
-    const [post, setPost] = useState({...createPostInitialState,user_id:params.id});
+    const [post, setPost] = useState({ ...createPostInitialState, user_id: params.id });
     const [createPost, createPostFlags] = useCreatePostMutation();
 
     const updatePost = (key, value) => {
@@ -27,17 +27,17 @@ export default function CreatePostModal({ isOpen, closeModal }) {
 
         try {
             await createPost(post).unwrap();
-            setPost({...createPostInitialState,user_id:params.id})
+            setPost({ ...createPostInitialState, user_id: params.id })
             dispatch(userApi.util.invalidateTags(['getUserPosts']));
             toast.success('Post created successfully!');
             closeModal();
         } catch (err) {
-             toast.error(`${err.data[0].field} ${err.data[0].message}`);
+            toast.error(`${err.data[0].field} ${err.data[0].message}`);
         }
     };
 
-  
-    
+
+
     return (
         <Modal isOpen={isOpen}>
             <div className="flex justify-between">
@@ -46,7 +46,7 @@ export default function CreatePostModal({ isOpen, closeModal }) {
             </div>
             <div className="flex flex-col justify-center items-center">
                 <div className="w-full">
-                   
+
                     <div className="mt-2">
                         <p>Title</p>
                         <input
@@ -68,7 +68,7 @@ export default function CreatePostModal({ isOpen, closeModal }) {
                         />
                     </div>
                     <button onClick={savePost} className="block mx-auto w-full bg-custom-red text-white rounded-md h-10 mt-8">
-                    {createPostFlags.isLoading ? `...` : 'Save'}
+                        {createPostFlags.isLoading ? `...` : 'Save'}
                     </button>
                 </div>
             </div>

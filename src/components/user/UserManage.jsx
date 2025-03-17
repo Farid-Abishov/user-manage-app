@@ -101,7 +101,7 @@ export default function UserManageTable() {
                         </select>
                         <select value={status}
                             onChange={(e) => handleFilterChange("status", e.target.value)} className="border-2 rounded-lg text-gray-400 select outline-none">
-                            <option value="" disabled >Status</option>
+                            <option value="" >{status ? 'Clear' : 'Status'}</option>
                             <option value="active">active</option>
                             <option value="inactive">inactive</option>
                         </select>

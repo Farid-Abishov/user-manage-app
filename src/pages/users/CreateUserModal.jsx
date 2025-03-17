@@ -20,7 +20,7 @@ export default function CreateUserModal({ isOpen, closeModal }) {
 
     const updateUser = (key, value) => {
         setUser((prev) => ({ ...prev, [key]: value || '' }));
-        
+
     }
 
     const saveUser = async () => {
@@ -61,7 +61,7 @@ export default function CreateUserModal({ isOpen, closeModal }) {
                 <div className="mt-2">
                     <p>Status</p>
                     <select value={user.status} onChange={(e) => updateUser('status', e.target.value)} className="my-2 w-full rounded-lg bg-input-border p-4 outline-none" >
-                    <option value="" disabled={true}>Status</option>
+                        <option value="" disabled={true}>Status</option>
                         <option value="Active">Active</option>
                         <option value="Inactive">Inactive</option>
                     </select>

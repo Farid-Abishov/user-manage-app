@@ -29,7 +29,7 @@ export default function UserDetail() {
                             <CiMail />
                             {user.email}
                         </span>
-                        <span className='text-sm flex items-center gap-1'>
+                        <span className='text-sm flex items-center gap-15 text-gray-500'>
                             <LuUser />
                             {user.gender}
                         </span>

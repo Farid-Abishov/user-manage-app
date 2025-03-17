@@ -14,12 +14,11 @@ export default function MainNavigation() {
         </h1>
       </div>
       <ul className="flex flex-col gap-3 p-3">
-        <li> 
-          <Link to="/"  className={`font-semibold px-4 py-2 rounded block ${
-            active === "/" ? "bg-custom-red text-white" : "bg-white"
-          } hover:bg-custom-red hover:text-white`}  onClick={() => setActive("/")}>Users</Link>
+        <li>
+          <Link to="/" className={`font-semibold px-4 py-2 rounded block ${active === "/" ? "bg-custom-red text-white" : "bg-white"
+            } hover:bg-custom-red hover:text-white`} onClick={() => setActive("/")}>Users</Link>
         </li>
-       
+
       </ul>
     </aside>
   );
