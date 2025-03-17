@@ -44,11 +44,11 @@ export default function UserManageTable() {
         await updateUser(editUser).unwrap()
 
         refetch()
-        
-        closeEditUser()
-        try{
 
-        }catch(err){
+        closeEditUser()
+        try {
+
+        } catch (err) {
 
         }
     }
@@ -79,7 +79,7 @@ export default function UserManageTable() {
 
     return (
         <>
-            <div className='table-header'> 
+            <div className='table-header'>
                 <p className="p-3 font-semibold">Users</p>
                 <hr />
                 <div className="controls p-3 ">
@@ -131,7 +131,9 @@ export default function UserManageTable() {
                             {slicedUsers.map((item) => (
                                 <tr key={item.id}>
                                     <td>{item.id}</td>
-                                    <td><Link to={`/users/${item.id}`}>{item.name}</Link></td>
+                                    <td>
+                                        <Link className='text-blue-600' to={`/users/${item.id}`}>{item.name}</Link>
+                                    </td>
                                     <td>{item.email}</td>
                                     <td>{item.gender}</td>
                                     <td>{item.status}</td>
@@ -183,7 +185,7 @@ export default function UserManageTable() {
                                 <p>Email</p>
                                 <input type="email" value={editUser.email} onChange={(e) => updateEditUser('email', e.target.value)} className="my-2 w-full rounded-lg bg-input-border p-4 outline-none" placeholder='email' />
                             </div>
-                          
+
                             <div className='mt-2'>
                                 <p>Status</p>
                                 <select value={editUser.status}

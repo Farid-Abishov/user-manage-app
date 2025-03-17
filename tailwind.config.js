@@ -15,11 +15,13 @@ export default {
         'custom-red':'#FF003C',
         'custom-black':'#1F1F1F',
         'input-border':'#E6E9ED',
-        'body-bg':'#e5f2fb',
+        // 'body-bg':'#f8f6f6',
+        // 'body-bg':'#e5f2fb',
+        'body-bg':'#f0f6fa',
       },
       width:{
         'header-w':'1728px',
-        'aside-w':'335px',
+        'aside-w':'300px',
         'addbtn':'179px',
       },
      
