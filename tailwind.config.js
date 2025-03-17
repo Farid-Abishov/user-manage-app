@@ -15,8 +15,6 @@ export default {
         'custom-red':'#FF003C',
         'custom-black':'#1F1F1F',
         'input-border':'#E6E9ED',
-        // 'body-bg':'#f8f6f6',
-        // 'body-bg':'#e5f2fb',
         'body-bg':'#f0f6fa',
       },
       width:{
@@ -29,7 +27,7 @@ export default {
         'header-h':'100px',
         'item-h':'650px',
         'content-h':'140px',
-        'container-h':'580px'
+        'container-h':'550px'
         },
       boxShadow:{
         'custom-shadow':'0 0 8px 0  rgba(230, 233, 237, 1)'
