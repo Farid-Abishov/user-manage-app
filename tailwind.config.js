@@ -27,7 +27,7 @@ export default {
         'header-h':'100px',
         'item-h':'650px',
         'content-h':'140px',
-        'container-h':'550px'
+        'container-h':'600px'
         },
       boxShadow:{
         'custom-shadow':'0 0 8px 0  rgba(230, 233, 237, 1)'

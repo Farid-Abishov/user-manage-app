@@ -82,7 +82,7 @@ export default function UserManageTable() {
             <div className='table-header'>
                 <p className="p-3 font-semibold">Users</p>
                 <hr />
-                <div className="controls p-1 ">
+                <div className="controls p-3 ">
                     <div className="search-filter w-full flex flex-row gap-2">
                         <input
                             type="search"
@@ -184,6 +184,15 @@ export default function UserManageTable() {
                             <div className="mt-2">
                                 <p>Email</p>
                                 <input type="email" value={editUser.email} onChange={(e) => updateEditUser('email', e.target.value)} className="my-2 w-full rounded-lg bg-input-border p-4 outline-none" placeholder='email' />
+                            </div>
+
+                            <div className='mt-2'>
+                                <p>Gender</p>
+                                <select value={editUser.gender}
+                                    onChange={(e) => updateEditUser("gender", e.target.value)} className="my-2 w-full rounded-lg bg-input-border p-4 outline-none" placeholder='status'>
+                                    <option value="active">Male</option>
+                                    <option value="inactive">Female</option>
+                                </select>
                             </div>
 
                             <div className='mt-2'>
